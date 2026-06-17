@@ -1,0 +1,60 @@
+<body>
+  {{> mainContainer}}
+</body>
+
+<template name="mainContainer">
+  <div class="app {{darkModeClass}}">
+    <header>
+      <div class="app-bar">
+        <div class="app-header">
+          <h1>To Do List {{incompleteCount}}</h1>
+        </div>
+        <button id="dark-mode-toggle" type="button" class="dark-toggle-btn" title="Toggle dark mode">
+          {{darkModeIcon}}
+        </button>
+      </div>
+    </header>
+
+    <div class="main">
+      {{> form}}
+
+      <div class="filter">
+        <input type="search" class="search-input" placeholder="Search tasks..." />
+        <select class="category-filter">
+          <option value="all">All categories</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+        <button id="hide-completed-button" type="button">
+          {{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}
+        </button>
+      </div>
+
+      {{#if isLoading}}
+        <div class="loading">loading...</div>
+      {{else}}
+        <ul class="tasks">
+          {{#each tasks}}
+            {{> task}}
+          {{else}}
+            <li class="empty-state">No tasks match this filter yet.</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="form">
+  <form class="task-form">
+    <input type="text" name="text" placeholder="Type to add new tasks" autocomplete="off" />
+    <select name="category" class="task-form-category">
+      <option value="Work">Work</option>
+      <option value="Personal">Personal</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+    <input type="date" name="dueDate" class="task-form-due-date" />
+    <button type="submit">Add Task</button>
+  </form>
+</template>
