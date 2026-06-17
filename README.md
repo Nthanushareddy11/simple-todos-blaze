@@ -9,7 +9,6 @@ The application allows users to create, organize, track, and manage tasks throug
 ## Application Preview
 
 ![Task Management Dashboard](dashboard.png)
-
 ---
 
 ## Features
